@@ -1,0 +1,65 @@
+﻿<form class="m-3" [formGroup]="msgForm" (ngSubmit)="submit()">
+    <div class="row mb-3 form-group">
+        <div class="col-2">
+            <label class="col-form-label fw-bold">Ваше имя:</label>
+        </div>
+        <div class="col">
+            <input name="contactName" formControlName="contactName" class="form-control" />
+        </div>
+        <span class="text-danger" *ngIf="msgForm.controls['contactName'].touched && msgForm.controls['contactName'].invalid">
+            Укажите Ваше имя
+        </span>
+    </div>
+    <div class="row mb-3 form-group">
+        <div class="col-2">
+            <label class="col-form-label fw-bold">Ваш Email:</label>
+        </div>
+        <div class="col">
+            <input name="contactEmail" formControlName="contactEmail" class="form-control" />
+        </div>
+        <span class="text-danger" *ngIf="msgForm.controls['contactEmail'].touched && msgForm.controls['contactEmail'].invalid">
+            Введите корректный Email-адрес
+        </span>
+    </div>
+    <div class="row mb-3 form-group">
+        <div class="col-2">
+            <label class="col-form-label fw-bold">Ваш телефон:</label>
+        </div>
+        <div class="col">
+            <input name="phoneNumber" formControlName="phoneNumber" class="form-control" />
+        </div>
+        <span class="text-danger" *ngIf="msgForm.controls['phoneNumber'].touched && msgForm.controls['phoneNumber'].invalid">
+            Введите корректный номер телефона
+        </span>
+    </div>
+    <div class="row mb-3 form-group">
+        <div class="col-2">
+            <label class="col-form-label fw-bold">Тема:</label>
+        </div>
+        <div class="col">
+            <select name="topic" formControlName="topic" class="form-select">
+                <option *ngFor="let topic of topics" value="{{topic.id}}">{{topic.title}}</option>
+            </select>
+        </div>
+        <span class="text-danger" *ngIf="msgForm.controls['topic'].touched && msgForm.controls['topic'].invalid">
+            Укажите тему сообщения
+        </span>
+    </div>
+    <div class="row mb-3 form-group">
+        <div class="col-2">
+            <label class="col-form-label fw-bold">Ваше сообщение:</label>
+        </div>
+        <div class="col">
+            <textarea name="message" formControlName="message" class="form-control" rows="5"></textarea>
+        </div>
+        <span class="text-danger" *ngIf="msgForm.controls['message'].touched && msgForm.controls['message'].invalid">
+            Введите сообщение для отправки
+        </span>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" [disabled]="msgForm.invalid" class="btn btn-success">
+            Отправить письмо!
+        </button>
+    </div>
+</form>
